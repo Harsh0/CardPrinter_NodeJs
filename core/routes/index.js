@@ -17,6 +17,14 @@ module.exports =function (options){
     }
   },{
     method:'GET',
+    path:'/output/{param*}',
+    handler:{
+      directory:{
+        path:'../output'
+      }
+    }
+  },{
+    method:'GET',
     path:'/babel/browser.min.js',
     handler:{
       file:'node_modules/babel-core/browser.min.js'

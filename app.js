@@ -13,6 +13,19 @@ server.register([{
   },{
     register:require('vision')
   },{
+    register:require('good'),
+    options:{
+      opsInterval:10000,
+      reporters:[{
+        reporter:require('good-file'),
+        events:{
+          log:'*',
+          ops:'*'
+        },
+        config:'./applog.log'
+      }]
+    }
+  },{
     register:require('./core'),
     options:{
       data:require('../data/studentData.json')
@@ -20,6 +33,7 @@ server.register([{
   }],error=>{
     if(error){
       console.log('Error : '+error);
+      server.log('error',error);
     }else{
       server.start((err)=>{
         if(err){
